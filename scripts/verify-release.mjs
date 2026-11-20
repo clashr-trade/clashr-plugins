@@ -10,9 +10,11 @@ const published = json(join(root, 'build-info.json'));
 for (const field of ['plugin', 'version', 'mcpPackage'])
   if (expected[field] !== published[field]) throw Error(`Release ${field} differs from source build`);
 for (const [field, folder] of [['files', 'plugins/clashr'], ['cursorFiles', 'plugins/clashr-cursor']]) {
-  if (JSON.stringify(expected[field]) !== JSON.stringify(published[field]))
+  // Filesystem enumeration order differs between Windows and Linux.
+  if (JSON.stringify(Object.keys(expected[field]).sort()) !== JSON.stringify(Object.keys(published[field]).sort()))
     throw Error(`Release ${folder} file inventory differs from source build`);
   for (const [file, hash] of Object.entries(expected[field])) {
+    if (published[field][file] !== hash) throw Error(`Source build hash differs: ${folder}/${file}`);
     const actual = createHash('sha256').update(readFileSync(join(root, folder, file))).digest('hex');
     if (actual !== hash) throw Error(`Release file differs: ${folder}/${file}`);
   }
