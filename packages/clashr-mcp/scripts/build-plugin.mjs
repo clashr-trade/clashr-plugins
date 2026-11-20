@@ -115,7 +115,7 @@ export async function buildPlugin() {
       join(stage, '.claude-plugin/marketplace.json'),
       JSON.stringify(
         {
-          name: 'clashr',
+          name: 'mcp',
           owner: manifest.author,
           plugins: [{ ...entry, source: './plugins/clashr', category: 'finance' }],
         },
@@ -127,8 +127,8 @@ export async function buildPlugin() {
       join(stage, '.agents/plugins/marketplace.json'),
       JSON.stringify(
         {
-          name: 'clashr',
-          interface: { displayName: 'Clashr' },
+          name: 'mcp',
+          interface: { displayName: 'Clashr MCP' },
           plugins: [
             {
               name: 'clashr',
@@ -161,7 +161,7 @@ export async function buildPlugin() {
     writeFileSync(join(cursor, 'mcp.json'), JSON.stringify(cursorMcp, null, 2) + '\n');
     mkdirSync(join(stage, '.cursor-plugin'), { recursive: true });
     writeFileSync(join(stage, '.cursor-plugin/marketplace.json'), JSON.stringify({
-      name: 'clashr', owner: { name: 'Clashr' },
+      name: 'mcp', owner: { name: 'Clashr' },
       metadata: { description: 'Clashr on BNB Chain: registration, markets, quotes and simulation.' },
       plugins: [{ name: 'clashr', source: './plugins/clashr-cursor', description: manifest.description }],
     }, null, 2) + '\n');

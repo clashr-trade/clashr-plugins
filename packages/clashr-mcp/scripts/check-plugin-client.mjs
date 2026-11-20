@@ -34,10 +34,10 @@ try {
     join(root, 'dist/clashr-plugin-marketplace'),
     '--json',
   ]);
-  const install = command(['plugin', 'add', 'clashr@clashr', '--json']);
-  const list = command(['plugin', 'list', '--marketplace', 'clashr', '--json']);
+  const install = command(['plugin', 'add', 'clashr@mcp', '--json']);
+  const list = command(['plugin', 'list', '--marketplace', 'mcp', '--json']);
   const mcp = command(['mcp', 'list', '--json']);
-  if (install.name !== 'clashr' || install.marketplaceName !== 'clashr')
+  if (market.marketplaceName !== 'mcp' || install.name !== 'clashr' || install.marketplaceName !== 'mcp')
     throw Error('Unexpected client installation identity');
   const portable = JSON.parse(readFileSync(join(install.installedPath, 'plugin.json'), 'utf8'));
   if (portable.name !== 'clashr' || !portable.extensions?.['com.openai']?.interface?.logo)

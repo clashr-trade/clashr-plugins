@@ -27,7 +27,7 @@ Keep configuration, wallet files and credentials outside this repository. The ru
 
 ```shell
 codex plugin marketplace add clashr-trade/clashr-plugins
-codex plugin add clashr@clashr
+codex plugin add clashr@mcp
 codex plugin list --json
 ```
 
@@ -39,7 +39,7 @@ Run inside Claude Code:
 
 ```text
 /plugin marketplace add clashr-trade/clashr-plugins
-/plugin install clashr@clashr
+/plugin install clashr@mcp
 ```
 
 Choose your install scope, then reload plugins if prompted. Inspect `/mcp` and invoke `/clashr:clashr` or ask Claude to use Clashr.

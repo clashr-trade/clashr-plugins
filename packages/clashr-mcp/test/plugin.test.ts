@@ -70,6 +70,8 @@ describe('packaged Claude/Codex/Cursor plugin', () => {
     expect(portable.name).toBe('clashr');
     expect(portable.version).toBe(claude.version);
     expect(info.version).toBe(portable.version);
+    for (const catalog of ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json', '.cursor-plugin/marketplace.json'])
+      expect(json(join(dir, catalog)).name).toBe('mcp');
     expect(json(join(dir, '.agents/plugins/marketplace.json')).plugins[0].source.path).toBe(
       './plugins/clashr',
     );

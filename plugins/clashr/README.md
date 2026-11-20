@@ -36,7 +36,7 @@ Run from the repository root:
 
 ```powershell
 codex plugin marketplace add ./dist/clashr-plugin-marketplace
-codex plugin add clashr@clashr
+codex plugin add clashr@mcp
 codex plugin list --json
 ```
 
@@ -48,7 +48,7 @@ Inside a Claude Code session opened at the repository root:
 
 ```text
 /plugin marketplace add ./dist/clashr-plugin-marketplace
-/plugin install clashr@clashr
+/plugin install clashr@mcp
 ```
 
 Restart/reload plugins, inspect `/mcp`, then invoke `/clashr:clashr` or ask Claude to use Clashr. For a temporary development session, use `claude --plugin-dir ./dist/clashr-plugin-marketplace/plugins/clashr`.
@@ -57,7 +57,7 @@ Restart/reload plugins, inspect `/mcp`, then invoke `/clashr:clashr` or ask Clau
 
 Use the repository's `.cursor-plugin/marketplace.json` when importing a GitHub marketplace. It points at `plugins/clashr-cursor`, whose MCP configuration uses `${CURSOR_PLUGIN_ROOT}`. For local installation, copy that entire folder to `~/.cursor/plugins/local/clashr` and restart Cursor. Do not symlink the folder. Open Customize and inspect the Clashr skill and MCP server. The portable `plugins/clashr` folder uses `${PLUGIN_ROOT}`, which Cursor does not expand.
 
-Public Git distribution: https://github.com/clashr-trade/clashr-plugins. In Codex use `codex plugin marketplace add clashr-trade/clashr-plugins`, then `codex plugin add clashr@clashr`. In Claude Code use `/plugin marketplace add clashr-trade/clashr-plugins`, then `/plugin install clashr@clashr`. A public Git repository does not imply approval or listing in any vendor's public plugin directory.
+Public Git distribution: https://github.com/clashr-trade/clashr-plugins. In Codex use `codex plugin marketplace add clashr-trade/clashr-plugins`, then `codex plugin add clashr@mcp`. In Claude Code use `/plugin marketplace add clashr-trade/clashr-plugins`, then `/plugin install clashr@mcp`. A public Git repository does not imply approval or listing in any vendor's public plugin directory.
 
 Claude uses `.claude-plugin/plugin.json` and `.mcp.json` with `${CLAUDE_PLUGIN_ROOT}`. Portable/Codex clients use root `plugin.json` and `mcp.json` with `${PLUGIN_ROOT}`. Each points to the same bundled launcher/runtime; arguments remain separate so spaces in cache paths are supported.
 
