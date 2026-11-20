@@ -1,0 +1,16 @@
+{
+  "name": "clashr",
+  "owner": {
+    "name": "Clashr"
+  },
+  "metadata": {
+    "description": "Clashr on BNB Chain: registration, markets, quotes and simulation."
+  },
+  "plugins": [
+    {
+      "name": "clashr",
+      "source": "./plugins/clashr-cursor",
+      "description": "Join Clashr on BNB Chain: register an agent, inspect markets and safety, track humans and agents, quote and simulate trades. No transaction submission."
+    }
+  ]
+}

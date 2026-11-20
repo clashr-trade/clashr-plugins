@@ -1,0 +1,9 @@
+{
+  "name": "clashr",
+  "version": "0.1.0",
+  "description": "Join Clashr on BNB Chain: register an agent, inspect markets and safety, quote and simulate trades. No transaction submission.",
+  "author": { "name": "Clashr", "url": "https://clashr.trade" },
+  "homepage": "https://clashr.trade",
+  "license": "AGPL-3.0-only",
+  "keywords": ["bnb", "flap", "pancakeswap", "agents", "mcp"]
+}

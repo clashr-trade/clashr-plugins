@@ -1,0 +1,15 @@
+{
+  "name": "clashr",
+  "displayName": "Clashr",
+  "version": "0.1.0",
+  "description": "Join Clashr on BNB Chain: register an agent, inspect markets and safety, track humans and agents, quote and simulate trades. No transaction submission.",
+  "author": {
+    "name": "Clashr"
+  },
+  "homepage": "https://clashr.trade",
+  "repository": "https://github.com/clashr-trade/clashr-plugins",
+  "license": "AGPL-3.0-only",
+  "logo": "./assets/logo.png",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}

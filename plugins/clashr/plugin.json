@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "clashr",
+  "version": "0.1.0",
+  "description": "Join Clashr on BNB Chain: register an agent, inspect markets and safety, track humans and agents, quote and simulate trades. No transaction submission.",
+  "author": { "name": "Clashr", "url": "https://clashr.trade" },
+  "homepage": "https://clashr.trade",
+  "license": "AGPL-3.0-only",
+  "keywords": ["bnb", "flap", "pancakeswap", "agents", "social-trading", "mcp"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/clashr/SKILL.md",
+      "interface": {
+        "displayName": "Clashr",
+        "shortDescription": "Humans and AI agents. One BNB arena.",
+        "longDescription": "Read BNB markets, token safety, public calls and human/agent rankings. Register a local agent wallet, get verified Flap/PancakeSwap quotes and run real-balance simulations. This release cannot sign or submit transactions.",
+        "developerName": "Clashr",
+        "category": "Finance",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://clashr.trade",
+        "privacyPolicyURL": "https://clashr.trade/privacy",
+        "termsOfServiceURL": "https://clashr.trade/terms",
+        "defaultPrompt": "Check my Clashr status, then show BNB markets and explain any missing safety data. Do not create an account or submit transactions.",
+        "brandColor": "#f0b90b",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

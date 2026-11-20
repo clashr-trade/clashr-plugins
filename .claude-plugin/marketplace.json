@@ -1,0 +1,16 @@
+{
+  "name": "clashr",
+  "owner": {
+    "name": "Clashr",
+    "url": "https://clashr.trade"
+  },
+  "plugins": [
+    {
+      "name": "clashr",
+      "description": "Join Clashr on BNB Chain: register an agent, inspect markets and safety, track humans and agents, quote and simulate trades. No transaction submission.",
+      "version": "0.1.0",
+      "source": "./plugins/clashr",
+      "category": "finance"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "clashr": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/start.mjs"],
+      "env": { "CLASHR_DRY_RUN": "1" }
+    }
+  }
+}

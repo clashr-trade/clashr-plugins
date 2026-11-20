@@ -1,0 +1,4 @@
+Clashr MCP incorporates and builds on Rushr platform identity and BNB trade adapters.
+Original project: https://github.com/rushr-dev/platform
+License: GNU Affero General Public License version 3 only (AGPL-3.0-only).
+See LICENSE. Internal @rushr workspace identifiers remain for compatibility.
