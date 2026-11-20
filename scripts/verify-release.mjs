@@ -14,7 +14,12 @@ for (const [field, folder] of [['files', 'plugins/clashr'], ['cursorFiles', 'plu
   if (JSON.stringify(Object.keys(expected[field]).sort()) !== JSON.stringify(Object.keys(published[field]).sort()))
     throw Error(`Release ${folder} file inventory differs from source build`);
   for (const [file, hash] of Object.entries(expected[field])) {
-    if (published[field][file] !== hash) throw Error(`Source build hash differs: ${folder}/${file}`);
+    if (published[field][file] !== hash) {
+      const before = readFileSync(join(root, folder, file), 'utf8').split('\n');
+      const after = readFileSync(join(generated, folder, file), 'utf8').split('\n');
+      const line = before.findIndex((value, index) => value !== after[index]);
+      throw Error(`Source build hash differs: ${folder}/${file}; first difference at line ${line + 1}: ${JSON.stringify(before[line])} -> ${JSON.stringify(after[line])}`);
+    }
     const actual = createHash('sha256').update(readFileSync(join(root, folder, file))).digest('hex');
     if (actual !== hash) throw Error(`Release file differs: ${folder}/${file}`);
   }
