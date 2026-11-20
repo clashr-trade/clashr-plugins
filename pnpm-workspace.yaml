@@ -1,6 +1,8 @@
 packages:
   - apps/*
   - packages/*
+# Keep dependency paths embedded by esbuild identical on Windows and Linux.
+virtualStoreDirMaxLength: 60
 allowBuilds:
   esbuild: true
   workerd: true
