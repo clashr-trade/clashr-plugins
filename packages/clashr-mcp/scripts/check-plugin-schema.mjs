@@ -10,11 +10,21 @@ const Ajv = fromSdk('ajv').default;
 const root = fileURLToPath(new URL('../../../', import.meta.url));
 const plugin = join(root, 'dist/clashr-plugin-marketplace/plugins/clashr');
 const checks = [];
+async function fetchSchema(url) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+      if (!response.ok) throw Error(`Schema download failed: HTTP ${response.status} ${url}`);
+      return await response.json();
+    } catch (error) {
+      if (attempt >= 2) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 500 * (attempt + 1)));
+    }
+  }
+}
 for (const name of ['plugin', 'mcp']) {
   const url = `https://agent-plugins.org/schemas/1.0.0/${name}.schema.json`;
-  const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
-  if (!response.ok) throw Error(`Could not fetch official ${name} schema`);
-  const schema = await response.json(),
+  const schema = await fetchSchema(url),
     ajv = new Ajv2020({ allErrors: true });
   const validate = ajv.compile(schema),
     document = JSON.parse(readFileSync(join(plugin, `${name}.json`), 'utf8'));
@@ -25,9 +35,8 @@ for (const [name, path] of [
   ['plugin', 'plugins/clashr-cursor/.cursor-plugin/plugin.json'],
   ['marketplace', '.cursor-plugin/marketplace.json'],
 ]) {
-  const response = await fetch(`https://raw.githubusercontent.com/cursor/plugins/main/schemas/${name}.schema.json`, { signal: AbortSignal.timeout(20000) });
-  if (!response.ok) throw Error(`Could not fetch official Cursor ${name} schema`);
-  const validate = new Ajv({ allErrors: true, strict: false, validateFormats: false }).compile(await response.json());
+  const schema = await fetchSchema(`https://raw.githubusercontent.com/cursor/plugins/main/schemas/${name}.schema.json`);
+  const validate = new Ajv({ allErrors: true, strict: false, validateFormats: false }).compile(schema);
   if (!validate(JSON.parse(readFileSync(join(root, 'dist/clashr-plugin-marketplace', path), 'utf8'))))
     throw Error(JSON.stringify(validate.errors));
   checks.push(path);
